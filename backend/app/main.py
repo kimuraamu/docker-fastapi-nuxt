@@ -2,6 +2,7 @@ from fastapi import FastAPI
 from model import TestUserTable, TestUser
 from db import session
 from starlette.middleware.cors import CORSMiddleware  # CORSを回避するために必要
+import uvicorn
 
 app = FastAPI()
 
@@ -46,3 +47,7 @@ def put_users(user: TestUser, user_id: int):
     target_user.name = user.name
     target_user.email = user.email
     session.commit()
+
+@app.get("/api/hoge")
+def index1():
+    return {"message": "hogehoge"}
